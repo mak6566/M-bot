@@ -1,6 +1,5 @@
 const { App } = require('@slack/bolt');
 const axios = require('axios');
-const http = require('http');
 require('dotenv').config();
 
 const app = new App({
@@ -56,14 +55,6 @@ app.command('/mbot-weather', async ({ command, ack, respond }) => {
   } catch (error) {
     await respond(`Could not find weather data for "${city}". Please check the spelling.`);
   }
-});
-
-const PORT = process.env.PORT || 3000;
-http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Bot is running!\n');
-}).listen(PORT, () => {
-  console.log(`Web server listening on port ${PORT}`);
 });
 
 (async () => {
