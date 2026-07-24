@@ -42,10 +42,11 @@ Once you access the Slack channel, simply type any of these commands:
    git clone [https://github.com/mak6566/M-bot.git](https://github.com/mak6566/M-bot.git)
    cd M-bot
 
- * Install dependencies:
+2.  **Install dependencies:**
+   ```bash
    npm install
 
- * Configure Environment Variables:
+3. **Configure Environment Variables:**
    Create a .env file in the root folder:
    SLACK_BOT_TOKEN="xoxb-your-bot-token"
 SLACK_APP_TOKEN="xapp-your-app-token"
@@ -54,10 +55,13 @@ WEATHER_API_KEY="your-openweathermap-api-key"
  * Start the bot:
    node app.js
 
-How It Works
+## How It Works
+
 Instead of exposing traditional webhooks via HTTP/HTTPS, M-bot connects using Slack Socket Mode via WebSocket. This architecture allows the bot to sit securely behind a container firewall on Nest while maintaining a persistent bidirectional connection with Slack's servers.
 The application is deployed on a Linux container and managed by systemd, ensuring automated process restarts and fault tolerance if an unhandled promise or network disruption occurs.
-Credits & Acknowledgements
+
+## Credits & Acknowledgements
+
  * Built using the official @slack/bolt framework.
  * Weather data powered by OpenWeatherMap API.
  * Humor & trivia provided by Official Joke API and Useless Facts API.
