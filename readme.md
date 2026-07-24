@@ -1,42 +1,64 @@
 # M-bot
 
-M-bot is a Slack bot built using JavaScript, Node.js, and the Slack Bolt framework with Socket Mode. It provides utility and entertainment slash commands using external APIs.
+A feature-packed Slack bot running 24/7 as a background system service, bringing live weather updates, programming jokes, and random trivia straight to your workspace.
+
+![M-bot in action](https://raw.githubusercontent.com/mak6566/M-bot/main/demo.png)
+
+## Try it Live
+
+**[Open Slack Channel to Try M-bot](https://app.slack.com/client/E09V59WQY1E/C0B8P5DRDB3)**
+
+---
+
+## Quick Start
+
+Once you access the Slack channel, simply type any of these commands:
+
+* `/mbot-joke` - Get a random programming joke.
+* `/mbot-fact` - Get a random useless fact.
+* `/mbot-weather London` - Get current real-time weather details for any city.
+
+---
 
 ## Features
 
-- `/mbot-joke`: Fetches and displays a random programming joke.
-- `/mbot-fact`: Fetches and displays a random useless fact.
-- `/mbot-weather [city]`: Fetches real-time weather data for the specified city using OpenWeatherMap.
+* **Real-time Weather Queries:** Integrated with the OpenWeatherMap API to display temperature, weather condition, and city info.
+* **Instant Entertainment:** Fetches programming humor and trivia on demand using external APIs.
+* **Socket Mode Integration:** Uses WebSockets for real-time, low-latency event processing without requiring public HTTP endpoints.
+* **24/7 Availability:** Runs continuously in the background via a managed Linux system service (`systemd`).
 
-## Tech Stack
+---
 
-- Node.js
-- @slack/bolt
-- Axios
-- dotenv
+## How to Run It Locally
 
-## Environment Variables
+### Prerequisites
+* **Node.js:** v18.x or higher
+* **npm:** v9.x or higher
 
-To run this project, you need to create a `.env` file in the root directory and define the following variables:
+### Installation
 
-SLACK_BOT_TOKEN=xoxb-...
-SLACK_APP_TOKEN=xapp-...
-WEATHER_API_KEY=your_openweathermap_api_key
-
-## Installation and Local Setup
-
-1. Clone the repository:
-   git clone https://github.com/mak6566/M-bot.git
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/mak6566/M-bot.git](https://github.com/mak6566/M-bot.git)
    cd M-bot
 
-2. Install dependencies:
+ * Install dependencies:
    npm install
 
-3. Create a `.env` file based on the environment variables section above.
+ * Configure Environment Variables:
+   Create a .env file in the root folder:
+   SLACK_BOT_TOKEN="xoxb-your-bot-token"
+SLACK_APP_TOKEN="xapp-your-app-token"
+WEATHER_API_KEY="your-openweathermap-api-key"
 
-4. Start the bot:
+ * Start the bot:
    node app.js
 
-## Deployment
+How It Works
+Instead of exposing traditional webhooks via HTTP/HTTPS, M-bot connects using Slack Socket Mode via WebSocket. This architecture allows the bot to sit securely behind a container firewall on Nest while maintaining a persistent bidirectional connection with Slack's servers.
+The application is deployed on a Linux container and managed by systemd, ensuring automated process restarts and fault tolerance if an unhandled promise or network disruption occurs.
+Credits & Acknowledgements
+ * Built using the official @slack/bolt framework.
+ * Weather data powered by OpenWeatherMap API.
+ * Humor & trivia provided by Official Joke API and Useless Facts API.
 
-This bot is designed to be deployed on Linux environments (such as Hack Club Nest) and kept online 24/7 using a systemd service.
